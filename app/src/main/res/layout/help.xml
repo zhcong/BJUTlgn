@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar3"
+        app:navigationIcon="@drawable/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="36dp"
+        android:layout_marginTop="25pt"
+        android:textAlignment="center"
+        android:text="关于" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="200pt"
+    android:scrollbarStyle="outsideInset" >
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="200pt"
+        android:paddingTop="10pt"
+        android:paddingLeft="10pt"
+        android:paddingRight="10pt"
+        android:textSize="6pt"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:text="
+        " />
+</ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <Button
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buttonstyle"
+        android:textColor="#fff"
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="返回" />
+    </RelativeLayout>
+
+</LinearLayout>

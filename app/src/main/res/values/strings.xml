@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">北工大无线</string>
+    <string name="app_title">北工大无线登陆</string>
+    <string name="action_settings">关于</string>
+    <string name="您已登陆">您已登陆</string>
+    <string name="请登陆">请登陆</string>
+    <string name="帮助">帮助</string>
+    <string name="保存">保存</string>
+    <string name="正在链接">正在链接</string>
+    <string name="更改用户">更改用户</string>
+    <string name="设置">设置</string>
+</resources>
