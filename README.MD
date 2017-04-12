@@ -11,4 +11,4 @@ Android 7.0(用的Android 5.0SDK)
 4、MD设计
 5、没了
 ## 截图
-![image](https://github.com/zhcong/BJUTlgn/screenshot/main.png)
+![image](https://raw.githubusercontent.com/zhcong/BJUTlgn/master/screenshot/main.png)
