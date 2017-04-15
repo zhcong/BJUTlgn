@@ -16,8 +16,10 @@ import java.io.Serializable;
  */
 
 public class Connect extends Thread{
+    //用于线程通信
     Handler mHandler;
     Context context;
+    //初始化
     public Connect(Handler m,Context c){
         this.context=c;
         this.mHandler=m;
@@ -65,6 +67,7 @@ public class Connect extends Thread{
             msgf=":没有权限访问网络状态";
         }
 
+        //向主界面发送登陆的结果
         Message msg = new Message();
         msg.what = 0;
         Bundle b = new Bundle();

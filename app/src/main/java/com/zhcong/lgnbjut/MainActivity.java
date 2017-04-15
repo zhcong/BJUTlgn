@@ -2,6 +2,7 @@ package com.zhcong.lgnbjut;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CaptureFragment;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //fab按钮的操作
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab = (FloatingActionButton) findViewById(R.id.fab1);
 
-        fab1.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //隐藏控件
@@ -64,6 +70,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fab = (FloatingActionButton) findViewById(R.id.fab4);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //打开扫描界面
+                try {
+                    Intent it = new Intent(MainActivity.this, QRScannerActivity.class);
+                    startActivityForResult(it, 1);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -107,39 +127,48 @@ public class MainActivity extends AppCompatActivity {
         Connect m1 = new Connect(mHandler,MainActivity.this);
         m1.start();
         try {
+            //等待线程工作完成
             mHandler.wait();
         }catch (Exception e){
             e.printStackTrace();
+            Toast toast = Toast.makeText(MainActivity.this, "网络访问失败，请检查是否赋予权限", Toast.LENGTH_SHORT);
+
+            toast.show();
         }
     }
 
     //每个动作下那些空间会隐藏，flag=false隐藏，i代表不同的动作
     void hide(int i,boolean flag){
         switch (i){
-            case 0:{
+            case 0:{//按下登陆fab的界面
                 if(!flag){
+                    //隐藏
                     findViewById(R.id.fab1).setVisibility(View.INVISIBLE);
                     findViewById(R.id.progressBar4).setVisibility(View.VISIBLE);
                     findViewById(R.id.progressBar4_text).setVisibility(View.VISIBLE);
                     findViewById(R.id.textView).setVisibility(View.INVISIBLE);
                 }else{
+                    //显示
                     findViewById(R.id.fab1).setVisibility(View.VISIBLE);
                     findViewById(R.id.progressBar4).setVisibility(View.INVISIBLE);
                     findViewById(R.id.progressBar4_text).setVisibility(View.INVISIBLE);
                     findViewById(R.id.textView).setVisibility(View.VISIBLE);
                 }
-            }break;//链接时隐藏
+            }break;
         }
     }
 //显示错误信息
     void ShowMsg(String str){
         if(str.charAt(0)==':'){
+            //通过':'号判断是否出错
             TextView textview = (TextView) findViewById(R.id.textView);
             textview.setText("登陆失败");
 
+            //提示错误类型
             Toast toast = Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT);
             toast.show();
         }else {
+            //显示登陆成功
             TextView textview = (TextView) findViewById(R.id.textView);
             textview.setText(str);
         }

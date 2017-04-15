@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--显示二维码的界面-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -7,19 +8,36 @@
     android:gravity="center" >
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="20pt"
+        app:srcCompat="@drawable/buttonstyle_normal" />
+
+    <ImageView
         android:layout_marginTop="10pt"
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="100pt"
-        app:srcCompat="@drawable/temp1" />
+        />
 
     <TextView
         android:id="@+id/textView5"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2748"
+        android:text="@string/失效"
         android:textAlignment="center"
         android:textSize="12pt"
-        android:paddingBottom="5pt"
         android:paddingTop="5pt"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="600"
+        android:layout_width="50pt"
+        android:paddingBottom="5pt"
+        android:progress="600"
+        android:layout_marginTop="5pt"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

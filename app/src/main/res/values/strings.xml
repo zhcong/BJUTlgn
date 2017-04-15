@@ -9,4 +9,7 @@
     <string name="正在链接">正在链接</string>
     <string name="更改用户">更改用户</string>
     <string name="设置">设置</string>
+    <string name="用于分享">用于分享</string>
+    <string name="取消">取消</string>
+    <string name="失效">请点击刷新</string>
 </resources>

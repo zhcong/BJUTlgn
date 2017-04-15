@@ -8,6 +8,7 @@ import android.widget.Button;
 
 /**
  * Created by zhangcong on 17-4-11.
+ * 对应帮助页面
  */
 
 public class HelpActivity extends Activity {
@@ -15,6 +16,7 @@ public class HelpActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.help);
+        //toolbar的返回按钮
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +24,7 @@ public class HelpActivity extends Activity {
                 finish();
             }
         });
+        //返回按钮
         Button but = (Button) findViewById(R.id.button3);
         but.setOnClickListener(new View.OnClickListener() {
             @Override
