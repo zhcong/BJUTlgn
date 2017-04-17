@@ -11,6 +11,6 @@ public class Values {
     public static String host="https://wlgn.bjut.edu.cn";
     //数据库位置
     public static String dbpath="/data/data/com.zhcong.lgnbjut/setting.db";
-    //二维码有效时间
-    public static int QRtime=5;
+    //二维码有效时间，最好别太短
+    public static int QRtime=30;
 }

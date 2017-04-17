@@ -18,8 +18,8 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="36dp"
-        android:layout_marginTop="25pt"
+        android:textSize="24dp"
+        android:layout_marginTop="5pt"
         android:textAlignment="center"
         android:text="关于" />
 <ScrollView
@@ -27,17 +27,15 @@
     android:layout_height="200pt"
     android:scrollbarStyle="outsideInset" >
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="200pt"
+        android:layout_height="wrap_content"
         android:paddingTop="10pt"
         android:paddingLeft="10pt"
         android:paddingRight="10pt"
         android:textSize="6pt"
         android:scrollbars="vertical"
         android:scrollbarStyle="insideOverlay"
-        android:text="
-        " />
+        android:text="@string/about" />
 </ScrollView>
     <RelativeLayout
         android:layout_width="match_parent"

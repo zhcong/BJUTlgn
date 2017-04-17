@@ -10,7 +10,7 @@ public class SettingStruct {
     public String password="";
     public String host="";//登陆页面
     public Boolean flag=false;//是否分享
-    public SettingStruct(String u,String p,String h,Boolean f){
+    public SettingStruct(String u,String p,String h,Boolean f,int q){
         user=u;
         password=p;
         host=h;

@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.zhcong.Code.Code;
+
 /**
  * Created by zhangcong on 17-4-12.
  */
@@ -32,6 +34,9 @@ public class ShareActivity extends Dialog {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //读取设置
+        SQL sql=new SQL(context);
+        final SettingStruct st = sql.load();
 
         //用于创建弹出窗口Dig
         View view = LayoutInflater.from(context).inflate(R.layout.share_main, null);
@@ -53,7 +58,7 @@ public class ShareActivity extends Dialog {
                     findViewById(R.id.imageView3).setAlpha(1f);
                     findViewById(R.id.textView5).setVisibility(View.GONE);
 
-                    QRCode.makeQR(getSharetext(),(ImageView) findViewById(R.id.imageView3));
+                    QRCode.makeQR(Code.encode(st.user,st.password),(ImageView) findViewById(R.id.imageView3));
 
                     ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar2);
                     pb.setProgress(pb.getMax());
@@ -65,8 +70,9 @@ public class ShareActivity extends Dialog {
         //设置进度条
         ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar2);
         pb.setMax(Values.QRtime*20);
+        pb.setProgress(pb.getMax());
         //创建二维码
-        QRCode.makeQR(getSharetext(),(ImageView) findViewById(R.id.imageView3));
+        QRCode.makeQR(Code.encode(st.user,st.password),(ImageView) findViewById(R.id.imageView3));
         //定时器执行
         handler.postDelayed(runnable, 50);
     }
@@ -96,7 +102,4 @@ public class ShareActivity extends Dialog {
             }
         }
     };
-    String getSharetext(){
-        return "S201607026;";
-    }
 }

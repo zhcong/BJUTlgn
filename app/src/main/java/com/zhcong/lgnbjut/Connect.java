@@ -4,10 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
+import android.provider.Settings;
+
+import com.zhcong.Code.AES;
 
 import java.io.Serializable;
 
@@ -74,5 +77,20 @@ public class Connect extends Thread{
         b.putSerializable("back", msgf);
         msg.setData(b);
         mHandler.sendMessage(msg);
+    }
+    public static String getID(Context ct){
+        //感谢 http://blog.csdn.net/ljz2009y/article/details/22895297
+        WifiManager wm = (WifiManager)ct.getSystemService(Context.WIFI_SERVICE);
+        //获取androidID
+        String m_szAndroidID = Settings.Secure.getString(ct.getContentResolver(), Settings.Secure.ANDROID_ID);
+        //获取MAC地址
+        String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();
+        //获取BuildID
+        String m_szBuildID = Build.ID.toString();
+
+        //拼接取MD5
+        String passwordKey= AES.MD5(m_szAndroidID+m_szWLANMAC+m_szBuildID);
+
+        return passwordKey;
     }
 }

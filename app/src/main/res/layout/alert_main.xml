@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--显示二维码的界面-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="200pt"
+    android:layout_height="200pt"
+    android:gravity="center" >
+    <TextView
+        android:layout_marginTop="10pt"
+        android:id="@+id/texttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="10pt"
+        android:textColor="@color/colorMain"/>
+    <TextView
+        android:paddingLeft="10pt"
+        android:paddingRight="10pt"
+        android:id="@+id/textabout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="12pt"
+        android:paddingTop="5pt"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25pt"
+        android:layout_marginTop="10pt"
+        android:gravity="center"
+        android:layout_marginBottom="5pt"
+        >
+        <Button
+            android:id="@+id/buttonsure"
+            android:layout_width="25pt"
+            android:layout_height="20pt"
+            android:background="@drawable/buttonstyle"
+            android:text="@string/保存"
+            android:textColor="#fff"  />
+
+        <Button
+            android:layout_marginLeft="20pt"
+            android:id="@+id/buttoncancel"
+            android:layout_width="25pt"
+            android:layout_height="20pt"
+            android:background="@drawable/buttonstyle"
+            android:text="@string/取消"
+            android:textColor="#fff" />
+    </LinearLayout>
+</LinearLayout>

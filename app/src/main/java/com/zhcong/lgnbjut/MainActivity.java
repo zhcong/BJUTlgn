@@ -1,8 +1,6 @@
 package com.zhcong.lgnbjut;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,11 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CaptureFragment;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
-import com.uuzuche.lib_zxing.activity.ZXingLibrary;
-
+import com.zhcong.Code.Code;
+import com.zhcong.Code.TOTP;
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -51,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //打开分享界面
                 ShareActivity radioButtonDialog=new ShareActivity(MainActivity.this);
                 radioButtonDialog.create();
                 radioButtonDialog.show();
@@ -86,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //主界面前台时电泳
+    @Override
+    protected void onResume(){
+        super.onResume();
+        //查看是否分享，添加分享按钮
+        SQL sql=new SQL(MainActivity.this);
+        SettingStruct st=sql.load();
+        if(!st.flag) ((FloatingActionButton) findViewById(R.id.fab3)).setVisibility(View.GONE);
+        else ((FloatingActionButton) findViewById(R.id.fab3)).setVisibility(View.VISIBLE);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -95,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+        // Handle action bar   clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
@@ -132,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
             Toast toast = Toast.makeText(MainActivity.this, "网络访问失败，请检查是否赋予权限", Toast.LENGTH_SHORT);
-
             toast.show();
         }
     }

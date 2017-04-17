@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 public class AddActivity extends Activity {
     SQL sql = new SQL(AddActivity.this);
     boolean passwdflage=false;//密码更改了吗
+    SettingStruct st;//保存设置的数据结构
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -40,6 +42,17 @@ public class AddActivity extends Activity {
                 finish();
             }
         });
+
+        //保存按钮
+        bt = (Button) findViewById(R.id.button2);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+                Toast toast = Toast.makeText(AddActivity.this, "已保存", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
         //添加文本改变事件
         EditText et = (EditText) findViewById(R.id.editText2);
         et.addTextChangedListener(new TextWatcher() {
@@ -48,32 +61,45 @@ public class AddActivity extends Activity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if(((EditText) findViewById(R.id.editText2)).getText().length()!=0){
+                //密码框改变
                     passwdflage=true;
-                }else{
-                    passwdflage=false;
-                }
             }
             @Override
             public void onTextChanged(CharSequence s, int arg1, int arg2,int arg3) {
             }
         });
 
+        //用户名
         et = (EditText) findViewById(R.id.editText);
+        //文本改变事件
         et.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int arg1, int arg2,int arg3) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,int after) { }
             @Override
             public void afterTextChanged(Editable s) {
-                ((EditText) findViewById(R.id.editText2)).setText("");
-                ((Switch) findViewById(R.id.switch1)).setChecked(false);
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int arg1, int arg2,int arg3) {
+                if(!s.toString().equals(st.user)){
+                    //用户名更改，则所有的问题重置
+                    ((EditText) findViewById(R.id.editText2)).setHint("输入密码");
+                    st.password = "";
+                    ((Switch) findViewById(R.id.switch1)).setChecked(false);
+                }
             }
         });
+        //share按钮
+        ((Switch) findViewById(R.id.switch1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    st.flag=true;
+                } else {
+                    st.flag=false;
+                }
+
+            }
+        });
         //初始化界面
         load();
 
@@ -81,21 +107,42 @@ public class AddActivity extends Activity {
 
     //存储用户数据
     void save(){
-        //根据不同的状态设置不同的sql语句
+        //判断非法情况
+        if(((EditText) findViewById(R.id.editText)).getText().length()==0){
+            Toast toast = Toast.makeText(AddActivity.this, "用户名不能为空", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
 
+        if(((EditText) findViewById(R.id.editText2)).getText().length()==0 && st.password.length()==0){
+            Toast toast = Toast.makeText(AddActivity.this, "密码不能为空", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        if(passwdflage) st.password=((EditText) findViewById(R.id.editText2)).getText().toString();
+        st.user=((EditText) findViewById(R.id.editText)).getText().toString();
+
+        sql.save(st);
     }
 
     //读取用户数据
     void load() {
-        SettingStruct st = sql.query();
+        st = sql.load();
         if (st == null) {
             Toast toast = Toast.makeText(AddActivity.this, "数据库打开失败", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
-        EditText et = (EditText) findViewById(R.id.editText);
-        et.setText(st.user);
-
+        if(st.user.length()==0){
+            EditText et = (EditText) findViewById(R.id.editText);
+            et.setHint("添加用户名");
+            et = (EditText) findViewById(R.id.editText2);
+            et.setHint("输入密码");
+        }else {
+            EditText et = (EditText) findViewById(R.id.editText);
+            et.setText(st.user);
+        }
         if(st.flag) ((Switch) findViewById(R.id.switch1)).setChecked(true);
     }
 }
