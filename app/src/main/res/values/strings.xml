@@ -12,10 +12,15 @@
     <string name="用于分享">用于分享</string>
     <string name="取消">取消</string>
     <string name="失效">请点击刷新</string>
-    <string name="about">这是北工大第三方wlan登陆App，现在已经托管到GitHub上了：https://github.com/zhcong/BJUTlgn
-    \n可以实现一般网关登陆（登陆到可以访问外网），通过二维码分享账户
+    <string name="about" translatable="false">这是北工大第三方wlan登陆App，现在已经托管到GitHub上了：\nhttps://github.com/zhcong/BJUTlgn
+    \n\n\n可以实现一般网关登陆（登陆到可以访问外网），通过二维码分享账户\n(注意，虽然不会通过二维码明文发送您的密码，但是存在一定的风险)
         \n\n项目使用的开源代码：\nhttps://github.com/futuresimple/android-floating-action-button\n
 https://github.com/j256/two-factor-auth\n
 https://github.com/yipianfengye/android-zxingLibrary\n
-https://github.com/scottyab/AESCrypt-Android</string>
+https://github.com/scottyab/AESCrypt-Android\n
+https://github.com/lopspower/CircularProgressBar\n\n
+        感谢他们！
+    </string>
+    <string name="删除">删除</string>
+    <string name="已用">已用</string>
 </resources>

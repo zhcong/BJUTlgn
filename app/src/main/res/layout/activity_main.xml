@@ -30,12 +30,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         fab:fab_colorNormal="@color/colorMain"
-        fab:fab_title="@string/更改用户"
         fab:fab_addButtonColorNormal="@color/colorMain"
         fab:fab_addButtonColorPressed="@color/colorMainlite"
         fab:fab_addButtonPlusIconColor="@color/colorMainlite"
         android:layout_gravity="left|bottom"
-        android:src="@drawable/link"
         />
 <com.getbase.floatingactionbutton.FloatingActionsMenu
     android:id="@+id/right_labels"
@@ -46,7 +44,7 @@
     fab:fab_addButtonPlusIconColor="#fff"
     android:layout_gravity="right|bottom"
     android:textColor="#fff"
-    android:src="@drawable/add">
+    >
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab4"
@@ -57,7 +55,7 @@
         fab:fab_addButtonPlusIconColor="@color/colorMainlite"
         fab:fab_title="2345"
         fab:fab_size="normal"
-        android:src="@drawable/photo"/>
+        />
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab3"
@@ -68,18 +66,19 @@
         fab:fab_addButtonPlusIconColor="@color/colorMainlite"
         fab:fab_title="2345"
         fab:fab_size="normal"
-        android:src="@drawable/share"/>
+        />
 
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        fab:fab_addButtonColorNormal="@color/colorMain"
-        fab:fab_addButtonColorPressed="@color/colorMainlite"
-        fab:fab_addButtonPlusIconColor="@color/colorMainlite"
-        fab:fab_title="2345"
-        fab:fab_size="normal"
-        android:src="@drawable/setting"/>
+    <!--设置功能现在还用不到-->
+    <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/fab2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--fab:fab_addButtonColorNormal="@color/colorMain"-->
+        <!--fab:fab_addButtonColorPressed="@color/colorMainlite"-->
+        <!--fab:fab_addButtonPlusIconColor="@color/colorMainlite"-->
+        <!--fab:fab_title="2345"-->
+        <!--fab:fab_size="normal"-->
+        <!--android:src="@drawable/setting"/>-->
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -90,14 +89,8 @@
         fab:fab_addButtonPlusIconColor="@color/colorMainlite"
         fab:fab_title="@string/更改用户"
         fab:fab_size="normal"
-        android:src="@drawable/people"/>
+        />
 
 </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-    <TextView
-        android:id="@+id/textTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="123" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -51,6 +51,8 @@ public class AddActivity extends Activity {
                 save();
                 Toast toast = Toast.makeText(AddActivity.this, "已保存", Toast.LENGTH_SHORT);
                 toast.show();
+                Button bt = (Button) findViewById(R.id.button3);
+                bt.setText("返回");
             }
         });
         //添加文本改变事件
@@ -83,6 +85,8 @@ public class AddActivity extends Activity {
                     //用户名更改，则所有的问题重置
                     ((EditText) findViewById(R.id.editText2)).setHint("输入密码");
                     st.password = "";
+                    ((EditText) findViewById(R.id.editTextFlowSize)).setHint(Values.flow_size+"G套餐");
+                    st.flow_size = Values.flow_size;
                     ((Switch) findViewById(R.id.switch1)).setChecked(false);
                 }
             }
@@ -103,6 +107,17 @@ public class AddActivity extends Activity {
         //初始化界面
         load();
 
+        //删除按钮
+        bt = (Button) findViewById(R.id.buttonDel);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sql.clear();
+                Toast toast = Toast.makeText(AddActivity.this, "已删除", Toast.LENGTH_SHORT);
+                toast.show();
+                load();
+            }
+        });
     }
 
     //存储用户数据
@@ -120,10 +135,20 @@ public class AddActivity extends Activity {
             return;
         }
 
+        String flow_size_str=((EditText) findViewById(R.id.editTextFlowSize)).getText().toString();
+        //这里没有检查，可能会崩溃
+        if(flow_size_str.length()!=0) st.flow_size=Integer.parseInt(flow_size_str);
+        if(st.flow_size<Values.flow_size_min || st.flow_size>Values.flow_size_max){
+            Toast toast = Toast.makeText(AddActivity.this, "套餐设置不对", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
         if(passwdflage) st.password=((EditText) findViewById(R.id.editText2)).getText().toString();
         st.user=((EditText) findViewById(R.id.editText)).getText().toString();
 
         sql.save(st);
+        load();
     }
 
     //读取用户数据
@@ -136,13 +161,23 @@ public class AddActivity extends Activity {
         }
         if(st.user.length()==0){
             EditText et = (EditText) findViewById(R.id.editText);
+            et.setText("");
             et.setHint("添加用户名");
             et = (EditText) findViewById(R.id.editText2);
+            et.setText("");
             et.setHint("输入密码");
+            ((Switch) findViewById(R.id.switch1)).setChecked(false);
+            st.flag=false;
+            //没有删除按钮
+            Button bt = (Button) findViewById(R.id.buttonDel);bt.setVisibility(View.INVISIBLE);
         }else {
             EditText et = (EditText) findViewById(R.id.editText);
             et.setText(st.user);
+            Button bt = (Button) findViewById(R.id.buttonDel);bt.setVisibility(View.VISIBLE);
         }
+        EditText et = (EditText) findViewById(R.id.editTextFlowSize);
+        et.setText("");
+        et.setHint(st.flow_size+"G套餐");
         if(st.flag) ((Switch) findViewById(R.id.switch1)).setChecked(true);
     }
 }

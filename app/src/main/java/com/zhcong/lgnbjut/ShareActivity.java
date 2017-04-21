@@ -58,7 +58,7 @@ public class ShareActivity extends Dialog {
                     findViewById(R.id.imageView3).setAlpha(1f);
                     findViewById(R.id.textView5).setVisibility(View.GONE);
 
-                    QRCode.makeQR(Code.encode(st.user,st.password),(ImageView) findViewById(R.id.imageView3));
+                    QRCode.makeQR(Code.encode(st.user,st.password,st.flow_size),(ImageView) findViewById(R.id.imageView3));
 
                     ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar2);
                     pb.setProgress(pb.getMax());
@@ -72,7 +72,7 @@ public class ShareActivity extends Dialog {
         pb.setMax(Values.QRtime*20);
         pb.setProgress(pb.getMax());
         //创建二维码
-        QRCode.makeQR(Code.encode(st.user,st.password),(ImageView) findViewById(R.id.imageView3));
+        QRCode.makeQR(Code.encode(st.user,st.password,st.flow_size),(ImageView) findViewById(R.id.imageView3));
         //定时器执行
         handler.postDelayed(runnable, 50);
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">北工大无线</string>
+    <string name="action_settings">about</string>
+    <string name="app_title">BJUT WIFI</string>
+    <string name="保存">save</string>
+    <string name="取消">cancel</string>
+    <string name="失效">Please touch and refersh</string>
+    <string name="帮助">help</string>
+    <string name="您已登陆">logined</string>
+    <string name="更改用户">change account</string>
+    <string name="正在链接">connecting...</string>
+    <string name="用于分享">allow to share</string>
+    <string name="设置">setting</string>
+    <string name="请登陆">please login</string>
+    <string name="删除">delete</string>
+    <string name="已用">used</string>
+</resources>

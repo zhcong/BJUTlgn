@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorMain">#0097c2</color>
     <color name="colorMainlite">#28b1d8</color>
+    <color name="colorMainMorelite">#63bfd9</color>
+    <color name="colorError">#b31800</color>
 </resources>

@@ -9,7 +9,6 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorMainlite" />
-            <corners android:radius="5dip" />
         </shape>
     </item>
 </selector>

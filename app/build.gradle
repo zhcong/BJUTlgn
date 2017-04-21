@@ -39,4 +39,5 @@ dependencies {
 
 dependencies {
     compile 'com.scottyab:aescrypt:0.0.1'
+    compile 'com.mikhaellopez:circularprogressbar:1.1.1'
 }

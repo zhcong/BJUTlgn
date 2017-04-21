@@ -26,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="monospace"
         android:text="@string/请登陆"
         android:textSize="12pt"
@@ -41,7 +41,8 @@
         android:id="@+id/progressBar4"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30pt"/>
     <TextView
         android:visibility="gone"
         android:id="@+id/progressBar4_text"
@@ -50,15 +51,38 @@
         android:textAlignment="center"
         android:text="@string/正在链接"
         />
-    <!--<LinearLayout-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center|center_horizontal|center_vertical">-->
-        <!--<Switch-->
-            <!--android:id="@+id/switch1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-    <!--</LinearLayout>-->
+    <TextView
+        android:id="@+id/textViewId"
+        android:layout_marginTop="20pt"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16pt"
+        android:textColor="@color/colorMainMorelite"
+        android:text="" />
 
-
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBarFlow"
+        android:layout_width="50pt"
+        android:layout_height="wrap_content"
+        app:cpb_progress="80"
+        app:cpb_background_progressbar_color="@color/colorMainMorelite"
+        app:cpb_background_progressbar_width="20dp"
+        app:cpb_progressbar_color="@color/colorMain"
+        android:layout_gravity="center"
+        app:cpb_progressbar_width="10dp"
+        android:animateLayoutChanges="true"
+        android:layout_marginTop="10pt"/>
+    <TextView
+        android:id="@+id/progressBarFlowText"
+        android:visibility="gone"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt"
+        android:layout_marginTop="5pt"
+        android:textColor="@color/colorError"
+        android:text="MB"
+        />
 </LinearLayout>

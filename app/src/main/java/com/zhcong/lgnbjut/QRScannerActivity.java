@@ -19,7 +19,7 @@ import com.zhcong.Code.Code;
  */
 
 public class QRScannerActivity extends FragmentActivity implements AlertConfirm{
-    String[] user;//保存扫描出的用户
+    SettingStruct Rbox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +58,15 @@ public class QRScannerActivity extends FragmentActivity implements AlertConfirm{
     CodeUtils.AnalyzeCallback analyzeCallback = new CodeUtils.AnalyzeCallback() {
         @Override
         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
-            String Rstr= Code.decode(result);
-            user = Rstr.split(";");
+            Rbox= Code.decode(result);
             //判断二维码的有效性
-            if(user.length<2){
+            if(Rbox.password.length()==0 || Rbox==null){
                 Toast toast = Toast.makeText(QRScannerActivity.this, "二维码已过期", Toast.LENGTH_SHORT);
                 toast.show();
                 finish();
             }else {
                 //弹出确认框
-                AlertActivity radioButtonDialog = new AlertActivity(QRScannerActivity.this, "更改为用户" ,user[0],QRScannerActivity.this);
+                AlertActivity radioButtonDialog = new AlertActivity(QRScannerActivity.this, "更改为用户" ,Rbox.user,QRScannerActivity.this);
                 radioButtonDialog.create();
                 radioButtonDialog.show();
             }
@@ -86,8 +85,8 @@ public class QRScannerActivity extends FragmentActivity implements AlertConfirm{
         SQL sql = new SQL(QRScannerActivity.this);
         SettingStruct st = sql.load();
 
-        st.user=user[0];
-        st.password=user[1];
+        st.user=Rbox.user;
+        st.password=Rbox.user;
         st.flag=true;
 
         sql.save(st);

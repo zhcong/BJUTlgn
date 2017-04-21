@@ -46,6 +46,7 @@ public class SQL {
                     st.password = AES.Decrypt(cursor.getString(1),Connect.getID(ct));
                     st.host = cursor.getString(2);
                     st.flag = cursor.getInt(3) == 0 ? false : true;
+                    st.flow_size = cursor.getInt(4);
                 }
             }
         } catch (Exception e) {
@@ -68,9 +69,9 @@ public class SQL {
 
     //创建表，并初始化
     public void mktable() {
-        String sql = "create table setting(user varchar,password varchar,host varchar,share INTEGER)";
+        String sql = "create table setting(user varchar,password varchar,host varchar,share INTEGER,flow INTEGER)";
         exec(sql);
-        sql = "insert into setting values('','','" + Values.host + "',0)";
+        sql = "insert into setting values('','','" + Values.host + "',0,"+Values.flow_size+")";
         exec(sql);
     }
 
@@ -83,14 +84,18 @@ public class SQL {
         st.password= AES.Encrypt(st.password,Connect.getID(ct));
 
         int flag = st.flag ? 1 : 0;
-        sql = "insert into setting values('" + st.user + "','" + st.password + "','" + st.host + "'," + flag + ")";
+        sql = "insert into setting values('" + st.user + "','" + st.password + "','" + st.host + "'," + flag + "," +st.flow_size+ ")";
         exec(sql);
     }
     //清除设置
     public void clear(){
         String sql = "delete from setting where 1==1";
         exec(sql);
-        sql = "insert into setting values('','','" + Values.host + "',0)";
+        sql = "insert into setting values('','','" + Values.host + "',0,"+Values.flow_size+")";
         exec(sql);
+    }
+    //关闭
+    public void close(){
+        db.close();
     }
 }
