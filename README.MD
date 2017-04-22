@@ -13,6 +13,4 @@ Android 7.0 （注：用的Android 5.0的SDK）
 ## 二维码分享
 使用OTOP，生成的二维码用时间加密，具有时效性，只要攻击者不知道二维码的生成时间，你的密码就是安全的
 ## 截图
-![image](https://raw.githubusercontent.com/zhcong/BJUTlgn/master/screenshot/main.png)
-## 联系
-[1011.0011@163.com](mailto: aaa@5icool.org)
+![image](https://raw.githubusercontent.com/zhcong/BJUTlgn/master/all.png)
